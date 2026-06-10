@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy Transition | GreenHub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --gold:#F5C518;
+  --bg:#0F0F0F;
+  --surface:#141414;
+  --surface2:#1A1A1A;
+  --border:rgba(255,255,255,.08);
+  --text-secondary:rgba(255,255,255,.55);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:var(--bg);
+  color:white;
+  font-family:'Inter',sans-serif;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* NAV */
+
+nav{
+  height:70px;
+  display:flex;
+  align-items:center;
+  padding:0 40px;
+  border-bottom:1px solid var(--border);
+  background:#111;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:800;
+}
+
+.logo span{
+  color:var(--gold);
+}
+
+.nav-links{
+  display:flex;
+  gap:30px;
+  margin-left:50px;
+}
+
+.nav-links a{
+  color:var(--text-secondary);
+}
+
+.nav-links .active{
+  color:var(--gold);
+}
+
+/* HERO */
+
+.hero{
+  padding:120px 40px 80px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.hero-tag{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-size:80px;
+  line-height:.95;
+  margin-bottom:20px;
+}
+
+.hero p{
+  max-width:700px;
+  color:var(--text-secondary);
+  line-height:1.8;
+  font-size:18px;
+}
+
+/* STATS */
+
+.stats{
+  max-width:1200px;
+  margin:auto;
+  padding:0 40px 80px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.stat{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:30px;
+}
+
+.stat-number{
+  font-size:54px;
+  font-weight:800;
+  color:var(--gold);
+}
+
+.stat-label{
+  color:var(--text-secondary);
+}
+
+/* FEATURE */
+
+.feature{
+  max-width:1200px;
+  margin:auto;
+  padding:0 40px 80px;
+}
+
+.feature-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:50px;
+}
+
+.feature-tag{
+  color:var(--gold);
+  text-transform:uppercase;
+  font-size:12px;
+  margin-bottom:15px;
+}
+
+.feature-card h2{
+  font-size:42px;
+  margin-bottom:20px;
+}
+
+.feature-card p{
+  color:var(--text-secondary);
+  line-height:1.8;
+}
+
+.read-more{
+  display:inline-block;
+  margin-top:25px;
+  color:var(--gold);
+  font-weight:600;
+}
+
+/* ARTICLES */
+
+.articles{
+  max-width:1200px;
+  margin:auto;
+  padding:0 40px 80px;
+}
+
+.section-title{
+  font-size:42px;
+  margin-bottom:30px;
+}
+
+.article-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.article{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:25px;
+}
+
+.article-number{
+  color:var(--gold);
+  margin-bottom:10px;
+}
+
+.article h3{
+  margin-bottom:15px;
+}
+
+.article p{
+  color:var(--text-secondary);
+  line-height:1.7;
+}
+
+/* FOOTER */
+
+footer{
+  margin-top:80px;
+  border-top:1px solid var(--border);
+  padding:40px;
+  text-align:center;
+  color:var(--text-secondary);
+}
+
+@media(max-width:768px){
+
+.hero h1{
+  font-size:50px;
+}
+
+.stats{
+  grid-template-columns:1fr;
+}
+
+.article-grid{
+  grid-template-columns:1fr;
+}
+
+.nav-links{
+  display:none;
+}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    Green<span>Hub</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="energy-transition.html" class="active">Energy</a>
+    <a href="sustainable-finance.html">Finance</a>
+    <a href="esg-policy.html">ESG Policy</a>
+    <a href="events.html">Events</a>
+    <a href="research.html">Research</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Energy Transition</div>
+
+  <h1>
+    Building the<br>
+    Future Energy System
+  </h1>
+
+  <p>
+    Analysis, insights, and research on renewable energy,
+    electrification, hydrogen, storage technologies, and the
+    transition toward a net-zero economy.
+  </p>
+</section>
+
+<section class="stats">
+  <div class="stat">
+    <div class="stat-number">42GW</div>
+    <div class="stat-label">New Renewable Capacity</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-number">€180B</div>
+    <div class="stat-label">Investment Pipeline</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-number">2030</div>
+    <div class="stat-label">EU Target Year</div>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="feature-card">
+    <div class="feature-tag">Featured Analysis</div>
+
+    <h2>Italy's Offshore Wind Opportunity</h2>
+
+    <p>
+      Offshore wind is becoming one of the most important pillars
+      of Italy's energy transition. New auctions, falling costs,
+      and supportive regulation are accelerating deployment across
+      the Mediterranean region.
+    </p>
+
+    <a href="#" class="read-more">Read Full Analysis →</a>
+  </div>
+</section>
+
+<section class="articles">
+  <h2 class="section-title">Latest Energy Articles</h2>
+
+  <div class="article-grid">
+
+    <div class="article">
+      <div class="article-number">01</div>
+      <h3>Future of Utility Scale Storage</h3>
+      <p>Battery economics continue to improve across Europe.</p>
+    </div>
+
+    <div class="article">
+      <div class="article-number">02</div>
+      <h3>Hydrogen Beyond the Hype</h3>
+      <p>Understanding the role of hydrogen in industrial decarbonization.</p>
+    </div>
+
+    <div class="article">
+      <div class="article-number">03</div>
+      <h3>Electricity Market Reform</h3>
+      <p>How Europe is redesigning power markets for renewable growth.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 GreenHub Bocconi · Energy Transition Section
+</footer>
+
+</body>
+</html>

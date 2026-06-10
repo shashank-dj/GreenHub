@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenHub Bocconi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#000000;
+  --white:#FFFFFF;
+  --gold:#F5C518;
+  --gold-dim:#c9a200;
+  --amber:#E87C10;
+  --bg:#0F0F0F;
+  --surface:#141414;
+  --surface2:#1A1A1A;
+  --border:rgba(255,255,255,0.08);
+  --text-primary:#FFFFFF;
+  --text-secondary:rgba(255,255,255,0.55);
+  --text-dim:rgba(255,255,255,0.28);
+  --f:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text-primary);font-family:var(--f);overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block}
+
+/* CURSOR */
+#cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s}
+#cur-o{position:fixed;width:32px;height:32px;border:1px solid rgba(245,197,24,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .12s linear}
+body:has(a:hover) #cur,body:has(button:hover) #cur{width:14px;height:14px}
+body:has(a:hover) #cur-o,body:has(button:hover) #cur-o{width:48px;height:48px;border-color:rgba(245,197,24,.7)}
+
+/* ═══════════ INTRO SCREEN ═══════════ */
+#intro{
+  position:fixed;inset:0;background:#000;z-index:10000;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+/* bouncing word sprites */
+.bword{
+  position:absolute;
+  font-family:var(--f);
+  font-weight:800;
+  pointer-events:none;
+  white-space:nowrap;
+  user-select:none;
+}
+/* center logo that fades in */
+#intro-logo{
+  position:relative;z-index:2;
+  font-size:clamp(48px,8vw,96px);
+  font-weight:800;
+  letter-spacing:-0.04em;
+  color:#fff;
+  opacity:0;
+  transform:scale(0.92);
+  transition:opacity .5s,transform .5s;
+}
+#intro-logo span{color:var(--gold)}
+#intro-tagline{
+  position:relative;z-index:2;
+  font-size:13px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);margin-top:14px;
+  opacity:0;transition:opacity .5s .2s;
+}
+#intro-progress{
+  position:absolute;bottom:0;left:0;height:2px;
+  background:var(--gold);width:0;
+  transition:width 2.4s cubic-bezier(.4,0,.2,1);
+}
+#skip-btn{
+  position:absolute;bottom:32px;right:32px;
+  font-family:var(--f);font-size:11px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.25);background:none;border:none;cursor:pointer;
+  transition:color .2s;
+}
+#skip-btn:hover{color:rgba(255,255,255,.7)}
+
+/* ═══════════ NAV ═══════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:64px;
+  display:flex;align-items:center;
+  padding:0 40px;
+  transform:translateY(-100%);
+  transition:transform .5s cubic-bezier(.4,0,.2,1);
+}
+nav::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(15,15,15,.98) 60%,transparent);
+  pointer-events:none;
+}
+nav.show{transform:translateY(0)}
+.nav-logo{
+  font-size:22px;font-weight:800;letter-spacing:-.04em;
+  color:#fff;position:relative;z-index:1;
+}
+.nav-logo span{color:var(--gold)}
+.nav-links{
+  display:flex;gap:28px;list-style:none;
+  margin-left:48px;position:relative;z-index:1;
+}
+.nav-links a{
+  font-size:13px;font-weight:500;color:rgba(255,255,255,.55);
+  transition:color .2s;letter-spacing:-.01em;
+}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-right{
+  margin-left:auto;position:relative;z-index:1;
+  display:flex;align-items:center;gap:16px;
+}
+.nav-issue{font-size:11px;color:rgba(255,255,255,.22);letter-spacing:.05em}
+.nav-cta{
+  font-size:12px;font-weight:600;letter-spacing:.02em;
+  background:var(--gold);color:#000;padding:8px 18px;
+  border-radius:4px;transition:background .2s;
+}
+.nav-cta:hover{background:#ffd42e}
+
+/* ═══════════ HERO ═══════════ */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 40px 80px;overflow:hidden;
+}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-fade{
+  position:absolute;bottom:0;left:0;right:0;height:50%;
+  background:linear-gradient(to top,var(--bg) 0%,transparent 100%);
+  pointer-events:none;
+}
+.hero-fade-top{
+  position:absolute;top:0;left:0;right:0;height:200px;
+  background:linear-gradient(to bottom,rgba(15,15,15,.7) 0%,transparent 100%);
+  pointer-events:none;
+}
+.hero-inner{position:relative;z-index:2;max-width:760px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,197,24,.12);border:1px solid rgba(245,197,24,.25);
+  border-radius:20px;padding:5px 14px;margin-bottom:24px;
+  font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--gold);
+  opacity:0;transform:translateY(12px);
+  transition:opacity .6s .1s,transform .6s .1s;
+}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-badge.show{opacity:1;transform:none}
+.hero-h1{
+  font-size:clamp(48px,7.5vw,96px);
+  font-weight:800;letter-spacing:-.04em;line-height:.95;
+  color:#fff;margin-bottom:24px;
+  opacity:0;transform:translateY(24px);
+  transition:opacity .7s .2s,transform .7s .2s;
+}
+.hero-h1 em{color:var(--gold);font-style:normal}
+.hero-h1.show{opacity:1;transform:none}
+.hero-sub{
+  font-size:17px;font-weight:400;color:rgba(255,255,255,.5);
+  line-height:1.7;max-width:560px;margin-bottom:36px;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .6s .35s,transform .6s .35s;
+}
+.hero-sub.show{opacity:1;transform:none}
+.hero-btns{
+  display:flex;gap:12px;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .6s .45s,transform .6s .45s;
+}
+.hero-btns.show{opacity:1;transform:none}
+.btn-primary{
+  font-size:14px;font-weight:600;letter-spacing:-.01em;
+  padding:14px 28px;background:var(--gold);color:#000;
+  border-radius:4px;transition:background .15s,transform .15s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{background:#ffd42e;transform:translateY(-1px)}
+.btn-secondary{
+  font-size:14px;font-weight:500;letter-spacing:-.01em;
+  padding:14px 28px;background:rgba(255,255,255,.1);
+  color:#fff;border-radius:4px;
+  border:1px solid rgba(255,255,255,.12);
+  transition:background .15s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-secondary:hover{background:rgba(255,255,255,.16)}
+
+/* hero right panel */
+.hero-stats-panel{
+  position:absolute;right:40px;bottom:80px;z-index:2;
+  display:flex;flex-direction:column;gap:2px;
+  opacity:0;transition:opacity .8s .6s;
+}
+.hero-stats-panel.show{opacity:1}
+.hstat{
+  padding:16px 20px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  border-radius:8px;
+  min-width:150px;
+}
+.hstat-n{font-size:40px;font-weight:800;letter-spacing:-.04em;color:var(--gold);line-height:1}
+.hstat-l{font-size:11px;font-weight:500;color:rgba(255,255,255,.35);margin-top:2px;letter-spacing:.02em}
+
+/* ═══════════ TICKER ═══════════ */
+.ticker{
+  background:var(--gold);padding:9px 0;overflow:hidden;white-space:nowrap;
+}
+.ticker-track{
+  display:inline-block;
+  animation:tickroll 44s linear infinite;
+  font-size:11px;font-weight:600;letter-spacing:.04em;color:#000;
+}
+.ticker-track .sep{color:rgba(0,0,0,.4);margin:0 16px}
+@keyframes tickroll{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
+
+/* ═══════════ SECTIONS ═══════════ */
+.section{padding:80px 40px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{
+  font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;
+}
+.section-title{
+  font-size:clamp(28px,3.5vw,42px);font-weight:700;
+  letter-spacing:-.03em;color:#fff;
+}
+
+/* ═══════════ COVER CARD ═══════════ */
+.cover-section{padding:60px 40px 0}
+.cover-inner{max-width:1200px;margin:0 auto}
+.cover-card{
+  display:grid;grid-template-columns:1.1fr 1fr;
+  border-radius:12px;overflow:hidden;
+  border:1px solid var(--border);
+}
+.cover-visual{
+  position:relative;min-height:500px;
+  background:#0a0a0a;overflow:hidden;
+}
+#cover-canvas{position:absolute;inset:0;width:100%;height:100%}
+.cover-vis-label{
+  position:absolute;bottom:14px;left:16px;
+  font-size:10px;font-weight:500;letter-spacing:.06em;
+  color:rgba(255,255,255,.2);
+}
+.cover-body{
+  background:var(--surface);
+  padding:44px 40px;
+  display:flex;flex-direction:column;
+}
+.cover-tag{
+  display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);
+  border:1px solid rgba(245,197,24,.3);
+  padding:4px 10px;border-radius:3px;margin-bottom:20px;align-self:flex-start;
+}
+.cover-body h2{
+  font-size:clamp(20px,2vw,26px);font-weight:700;letter-spacing:-.03em;
+  color:#fff;line-height:1.25;margin-bottom:16px;
+}
+.cover-body p{font-size:14px;color:rgba(255,255,255,.5);line-height:1.8;flex:1}
+.cover-meta{
+  margin-top:28px;padding-top:20px;
+  border-top:1px solid var(--border);
+  font-size:11px;color:rgba(255,255,255,.28);letter-spacing:.02em;
+}
+.cover-read{
+  display:inline-flex;align-items:center;gap:6px;margin-top:12px;
+  font-size:13px;font-weight:600;color:var(--gold);
+  transition:gap .2s;
+}
+.cover-read:hover{gap:12px}
+.cover-read svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* secondary articles */
+.articles-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;border-left:1px solid var(--border);border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);border-radius:0 0 12px 12px;
+  overflow:hidden;margin-top:0;
+}
+.art-card{
+  padding:24px;border-right:1px solid var(--border);
+  background:var(--surface);
+  transition:background .2s;cursor:pointer;
+}
+.art-card:last-child{border-right:none}
+.art-card:hover{background:var(--surface2)}
+.art-num{font-size:11px;font-weight:500;color:rgba(255,255,255,.2);margin-bottom:10px}
+.art-cat{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.art-card h4{font-size:13px;font-weight:600;letter-spacing:-.02em;color:#fff;line-height:1.45;margin-bottom:6px}
+.art-card p{font-size:11.5px;color:rgba(255,255,255,.38);line-height:1.6}
+
+/* ═══════════ NUMBERS BAND ═══════════ */
+.nums-section{
+  padding:80px 40px;
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.nums-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
+.num-cell{
+  padding:0 40px;border-right:1px solid var(--border);
+}
+.num-cell:first-child{padding-left:0}
+.num-cell:last-child{border-right:none}
+.num-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:8px}
+.num-val{
+  font-size:72px;font-weight:800;letter-spacing:-.05em;color:var(--gold);
+  line-height:1;margin-bottom:10px;
+}
+.num-title{font-size:16px;font-weight:600;letter-spacing:-.02em;color:#fff;margin-bottom:8px}
+.num-text{font-size:13px;color:rgba(255,255,255,.38);line-height:1.7}
+.num-link{
+  display:inline-flex;align-items:center;gap:6px;margin-top:16px;
+  font-size:12px;font-weight:600;color:var(--gold);
+  transition:gap .15s;
+}
+.num-link:hover{gap:12px}
+
+/* ═══════════ EVENTS + PAPERS ═══════════ */
+.ep-section{padding:80px 40px}
+.ep-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.col-title{
+  font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);padding-bottom:16px;
+  border-bottom:1px solid var(--border);margin-bottom:4px;
+}
+.ev-item{
+  display:flex;gap:16px;padding:16px 0;
+  border-bottom:1px solid var(--border);
+  transition:background .15s,padding-left .15s;cursor:pointer;border-radius:4px;
+}
+.ev-item:hover{padding-left:8px;background:var(--surface2)}
+.ev-item:last-of-type{border-bottom:none}
+.ev-date-block{min-width:48px;text-align:center;padding-top:2px}
+.ev-day{font-size:28px;font-weight:800;letter-spacing:-.04em;color:var(--gold);line-height:1;display:block}
+.ev-month{font-size:10px;font-weight:500;color:rgba(255,255,255,.3);letter-spacing:.04em}
+.ev-tag{
+  font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  display:inline-block;padding:2px 7px;border-radius:3px;margin-bottom:5px;
+}
+.ev-tag.speaker{background:rgba(245,197,24,.12);color:var(--gold);border:1px solid rgba(245,197,24,.25)}
+.ev-tag.workshop{background:rgba(232,124,16,.1);color:var(--amber);border:1px solid rgba(232,124,16,.25)}
+.ev-tag.panel{background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.12)}
+.ev-tag.closing{background:rgba(255,255,255,.04);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.1)}
+.ev-info h4{font-size:13.5px;font-weight:600;letter-spacing:-.02em;color:#fff;line-height:1.4;margin-bottom:3px}
+.ev-info p{font-size:11px;color:rgba(255,255,255,.3)}
+
+.paper-item{
+  display:flex;gap:14px;padding:16px 0;
+  border-bottom:1px solid var(--border);
+  transition:padding-left .15s,background .15s;cursor:pointer;border-radius:4px;
+}
+.paper-item:hover{padding-left:8px;background:var(--surface2)}
+.paper-item:last-of-type{border-bottom:none}
+.paper-n{font-size:11px;font-weight:500;color:rgba(255,255,255,.2);min-width:22px;padding-top:2px}
+.paper-info h4{font-size:13.5px;font-weight:600;letter-spacing:-.02em;color:#fff;line-height:1.4;margin-bottom:3px}
+.paper-info p{font-size:11px;color:rgba(255,255,255,.3)}
+.col-more{
+  display:inline-flex;align-items:center;gap:6px;margin-top:16px;
+  font-size:12px;font-weight:600;color:rgba(255,255,255,.5);
+  transition:color .2s,gap .15s;
+}
+.col-more:hover{color:#fff;gap:12px}
+
+/* ═══════════ JOIN ═══════════ */
+.join-section{
+  padding:100px 40px;
+  background:var(--gold);
+  position:relative;overflow:hidden;
+}
+.join-bg-word{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-size:clamp(80px,18vw,220px);font-weight:800;letter-spacing:-.05em;
+  color:rgba(0,0,0,.06);white-space:nowrap;pointer-events:none;
+}
+.join-inner{position:relative;z-index:1;max-width:560px;margin:0 auto;text-align:center}
+.join-inner h2{font-size:clamp(30px,4vw,52px);font-weight:800;letter-spacing:-.04em;color:#000;line-height:1.05;margin-bottom:12px}
+.join-inner p{font-size:15px;color:rgba(0,0,0,.6);line-height:1.75;margin-bottom:32px}
+.join-form{
+  display:flex;background:#000;border-radius:6px;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(0,0,0,.3);
+}
+.join-form input{
+  flex:1;font-family:var(--f);font-size:13px;font-weight:400;
+  padding:14px 18px;background:transparent;color:#fff;border:none;outline:none;
+}
+.join-form input::placeholder{color:rgba(255,255,255,.3)}
+.join-form button{
+  font-family:var(--f);font-size:12px;font-weight:700;letter-spacing:.04em;
+  padding:14px 22px;background:var(--gold);color:#000;border:none;cursor:pointer;
+  white-space:nowrap;transition:background .15s;border-radius:0 6px 6px 0;
+}
+.join-form button:hover{background:#ffd42e}
+
+/* ═══════════ FOOTER ═══════════ */
+footer{
+  background:#000;
+  border-top:1px solid rgba(255,255,255,.06);
+  padding:60px 40px 32px;
+}
+.ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:28px}
+.ft-logo{font-size:32px;font-weight:800;letter-spacing:-.04em;color:#fff;margin-bottom:10px}
+.ft-logo span{color:var(--gold)}
+.ft-desc{font-size:12px;color:rgba(255,255,255,.28);line-height:1.9;letter-spacing:.01em}
+.ft-col h3{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:14px}
+.ft-col ul{list-style:none}
+.ft-col li{margin-bottom:8px}
+.ft-col a{font-size:13px;font-weight:400;color:rgba(255,255,255,.38);transition:color .15s}
+.ft-col a:hover{color:#fff}
+.ft-bot{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.ft-bot p{font-size:11px;color:rgba(255,255,255,.18);letter-spacing:.02em}
+
+/* ═══════════ SCROLL REVEAL ═══════════ */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .65s,transform .65s}
+.rv.in{opacity:1;transform:none}
+.rv1{transition-delay:.07s}.rv2{transition-delay:.14s}.rv3{transition-delay:.21s}.rv4{transition-delay:.28s}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:960px){
+  nav .nav-links,.hero-stats-panel{display:none}
+  .cover-card{grid-template-columns:1fr}
+  .cover-visual{min-height:220px}
+  .articles-row{grid-template-columns:1fr 1fr}
+  .nums-inner{grid-template-columns:1fr}
+  .num-cell{padding:0 0 32px;border-right:none;border-bottom:1px solid var(--border)}
+  .num-cell:last-child{border-bottom:none;padding-bottom:0}
+  .ep-inner{grid-template-columns:1fr;gap:48px}
+  .ft-inner{grid-template-columns:1fr}
+  nav,.hero,.section,.section-inner,.cover-section,.cover-inner,
+  .ep-section,.ep-inner,.nums-section,.join-section,footer{padding-left:20px;padding-right:20px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-o"></div>
+
+<!-- ════════════════ INTRO ════════════════ -->
+<div id="intro">
+  <canvas id="bounce-canvas" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+  <div id="intro-logo">Green<span>Hub</span></div>
+  <div id="intro-tagline">SDA Bocconi &nbsp;·&nbsp; Milan &nbsp;·&nbsp; Est. 2026</div>
+  <div id="intro-progress"></div>
+  <button id="skip-btn">Skip intro</button>
+</div>
+
+<!-- ════════════════ NAV ════════════════ -->
+<nav id="main-nav">
+  <div class="nav-logo">Green<span>Hub</span></div>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="energy-transition.html">Energy</a></li>
+    <li><a href="sustainable-finance.html" class="active">Finance</a></li>
+    <li><a href="esg-policy.html">ESG Policy</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="research.html">Research</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-issue">Vol. I · No. 1</span>
+    <a href="#join" class="nav-cta">Join</a>
+  </div>
+</nav>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-fade-top"></div>
+  <div class="hero-fade"></div>
+  <div class="hero-inner">
+    <div class="hero-badge" id="hb">Live · SDA Bocconi · Milan 2026</div>
+    <h1 class="hero-h1" id="hh">The sustainability<br>generation <em>speaks.</em></h1>
+    <p class="hero-sub" id="hs">Student-run analysis, events, and research on the energy transition and sustainable finance — from the heart of SDA Bocconi.</p>
+    <div class="hero-btns" id="hbt">
+      <a href="#cover" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Read cover story
+      </a>
+      <a href="#events" class="btn-secondary">Upcoming events</a>
+    </div>
+  </div>
+  <div class="hero-stats-panel" id="hsp">
+    <div class="hstat"><div class="hstat-n">12</div><div class="hstat-l">Speaker events</div></div>
+    <div class="hstat" style="margin-top:2px"><div class="hstat-n">4</div><div class="hstat-l">Research papers</div></div>
+    <div class="hstat" style="margin-top:2px"><div class="hstat-n">3</div><div class="hstat-l">Lab challenges</div></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="ticker-track">
+    EU taxonomy update: green hydrogen now included in transitional activities
+    <span class="sep">◆</span>
+    SFDR Level 3 consultations open — GreenHub policy lab submitting student brief
+    <span class="sep">◆</span>
+    Next speaker: Head of ESG at Eurizon Capital · May 28 · SDA Aula Magna
+    <span class="sep">◆</span>
+    New consulting challenge: Eni Foundation — decarbonization roadmap for SMEs
+    <span class="sep">◆</span>
+    New thesis paper: Stranded assets in the Italian energy grid — out this week
+    <span class="sep">◆</span>
+    Applications open for Semester II consulting lab teams
+    <span class="sep">◆</span>
+  </span>
+</div>
+
+<!-- ════════════════ COVER ════════════════ -->
+<div class="cover-section" id="cover">
+  <div class="cover-inner">
+    <div class="section-label rv" style="margin-bottom:16px">Cover story · May 2026</div>
+    <div class="cover-card rv">
+      <div class="cover-visual">
+        <canvas id="cover-canvas"></canvas>
+        <div class="cover-vis-label">GreenHub Sustainable Finance Lab · Data visualization</div>
+      </div>
+      <div class="cover-body">
+        <div class="cover-tag">Cover story</div>
+        <h2>Europe's energy transition is moving faster than its finance can follow</h2>
+        <p>As renewable capacity doubles ahead of schedule, green bond markets are struggling to price long-duration climate risk. A GreenHub analysis of the €350bn gap between capital needs and available sustainable finance instruments.</p>
+        <div class="cover-meta">
+          Elena Marchetti & Sven Kowalski &nbsp;·&nbsp; Sustainable Finance Lab &nbsp;·&nbsp; May 2026
+          <br>
+          <a href="sustainable-finance.html" class="cover-read">
+            Read full analysis
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="articles-row rv rv1">
+      <div class="art-card">
+        <div class="art-num">01</div>
+        <div class="art-cat">ESG Policy</div>
+        <h4>SFDR's Article 9 funds shrink again — what this means for impact investors</h4>
+        <p>Reclassifications hit €28bn in Q1 2026, signaling regulatory anxiety around greenwashing enforcement.</p>
+      </div>
+      <div class="art-card">
+        <div class="art-num">02</div>
+        <div class="art-cat">Consulting Lab</div>
+        <h4>Students deliver net-zero roadmap for Milanese textile firm</h4>
+        <p>Semester I lab team presents to board: three pathways, two timelines, one clear recommendation.</p>
+      </div>
+      <div class="art-card">
+        <div class="art-num">03</div>
+        <div class="art-cat">Energy Transition</div>
+        <h4>Italy's offshore wind auction: what the bids tell us about the market</h4>
+        <p>First competitive tender draws 14 bids across 6GW of capacity. Our read of the numbers.</p>
+      </div>
+      <div class="art-card">
+        <div class="art-num">04</div>
+        <div class="art-cat">Opinion</div>
+        <h4>Carbon markets need a clearing house — here's why student voices matter</h4>
+        <p>A GreenHub editorial from the ESG Policy working group on the voluntary carbon market crisis.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ NUMBERS ════════════════ -->
+<div class="nums-section">
+  <div class="nums-inner">
+    <div class="num-cell rv">
+      <div class="num-label">Speaker series</div>
+      <div class="num-val">12</div>
+      <div class="num-title">Events this academic year</div>
+      <p class="num-text">From carbon pricing to blended finance, our speaker archive now covers the full spectrum of the transition.</p>
+      <a href="#events" class="num-link">Browse archive →</a>
+    </div>
+    <div class="num-cell rv rv2">
+      <div class="num-label">Research</div>
+      <div class="num-val">4</div>
+      <div class="num-title">Briefs published</div>
+      <p class="num-text">The Policy Lab's CBAM paper was formally submitted to DG CLIMA — a first for a Bocconi student initiative.</p>
+      <a href="#papers" class="num-link">Read the papers →</a>
+    </div>
+    <div class="num-cell rv rv3">
+      <div class="num-label">Consulting lab</div>
+      <div class="num-val">3</div>
+      <div class="num-title">Challenges completed</div>
+      <p class="num-text">Eni Foundation, Enel Green Power, and a Tier-1 ESG fund. Each sprint ended with a live board presentation.</p>
+      <a href="#" class="num-link">See the work →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ EVENTS + PAPERS ════════════════ -->
+<div class="ep-section">
+  <div class="ep-inner">
+    <div id="events">
+      <div class="col-title rv">Upcoming events</div>
+      <div class="ev-item rv rv1">
+        <div class="ev-date-block"><span class="ev-day">28</span><span class="ev-month">May</span></div>
+        <div class="ev-info">
+          <span class="ev-tag speaker">Speaker</span>
+          <h4>ESG Integration in Practice — Head of ESG, Eurizon Capital</h4>
+          <p>SDA Bocconi · Aula Magna · 18:00 · Open to all masters</p>
+        </div>
+      </div>
+      <div class="ev-item rv rv2">
+        <div class="ev-date-block"><span class="ev-day">05</span><span class="ev-month">Jun</span></div>
+        <div class="ev-info">
+          <span class="ev-tag workshop">Workshop</span>
+          <h4>Reading a green bond prospectus — hands-on session</h4>
+          <p>SDA · Room C1.04 · 14:00 · Members only</p>
+        </div>
+      </div>
+      <div class="ev-item rv rv3">
+        <div class="ev-date-block"><span class="ev-day">12</span><span class="ev-month">Jun</span></div>
+        <div class="ev-info">
+          <span class="ev-tag panel">Panel</span>
+          <h4>Just transition or fast transition? A policymaker roundtable</h4>
+          <p>Online · 17:00 · Open registration</p>
+        </div>
+      </div>
+      <div class="ev-item rv rv4">
+        <div class="ev-date-block"><span class="ev-day">20</span><span class="ev-month">Jun</span></div>
+        <div class="ev-info">
+          <span class="ev-tag closing">Closing</span>
+          <h4>End of year network dinner — speakers, partners & alumni</h4>
+          <p>Milan city centre · Invite only</p>
+        </div>
+      </div>
+      <a href="#" class="col-more">View all events →</a>
+    </div>
+    <div id="papers">
+      <div class="col-title rv">Latest research papers</div>
+      <div class="paper-item rv rv1">
+        <div class="paper-n">01</div>
+        <div class="paper-info">
+          <h4>Stranded assets in the Italian electricity grid: a scenario analysis</h4>
+          <p>GreenHub Policy Lab · May 2026 · 18 pp</p>
+        </div>
+      </div>
+      <div class="paper-item rv rv2">
+        <div class="paper-n">02</div>
+        <div class="paper-info">
+          <h4>CBAM at the border: implementation gaps and what the EU got wrong</h4>
+          <p>Policy Lab · March 2026 · 24 pp · Submitted to DG CLIMA</p>
+        </div>
+      </div>
+      <div class="paper-item rv rv3">
+        <div class="paper-n">03</div>
+        <div class="paper-info">
+          <h4>Impact investing in European energy: who is actually moving the money?</h4>
+          <p>Finance Lab · February 2026 · 14 pp</p>
+        </div>
+      </div>
+      <div class="paper-item rv rv4">
+        <div class="paper-n">04</div>
+        <div class="paper-info">
+          <h4>Green bond market liquidity: a student audit of 40 issuances</h4>
+          <p>Finance Lab · December 2025 · 20 pp</p>
+        </div>
+      </div>
+      <a href="#" class="col-more">View all papers →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ JOIN ════════════════ -->
+<div class="join-section" id="join">
+  <div class="join-bg-word">GREENHUB</div>
+  <div class="join-inner rv">
+    <h2>Join GreenHub Bocconi</h2>
+    <p>Open to all SDA Bocconi master students. Get event invites, early paper access, and lab opportunities straight to your inbox.</p>
+    <div class="join-form">
+      <input type="email" placeholder="Your Bocconi email" id="j-email">
+      <button id="j-btn">Join →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div class="ft-inner">
+    <div>
+      <div class="ft-logo">Green<span>Hub</span></div>
+      <p class="ft-desc">Student-run · Cross-master<br>SDA Bocconi School of Management<br>Milan, Italy · Est. 2026</p>
+    </div>
+    <div class="ft-col">
+      <h3>Sections</h3>
+      <ul>
+        <li><a href="#">Energy transition</a></li>
+        <li><a href="#">Sustainable finance</a></li>
+        <li><a href="#">ESG policy</a></li>
+        <li><a href="#">Consulting lab</a></li>
+        <li><a href="#papers">Thesis papers</a></li>
+        <li><a href="#events">Speaker archive</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h3>Community</h3>
+      <ul>
+        <li><a href="#join">Join GreenHub</a></li>
+        <li><a href="#">Write for us</a></li>
+        <li><a href="#">Partner with us</a></li>
+        <li><a href="#">Contact editors</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <p>© 2026 GreenHub Bocconi · SDA Bocconi School of Management</p>
+    <p>Student-run · Independent editorial · Not affiliated with Bocconi University press</p>
+  </div>
+</footer>
+
+<script>
+/* ──────────── CURSOR ──────────── */
+const cur=document.getElementById('cur'),curo=document.getElementById('cur-o');
+let mx=0,my=0,ox=0,oy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+!function tick(){
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+  ox+=(mx-ox)*.13;oy+=(my-oy)*.13;
+  curo.style.left=ox+'px';curo.style.top=oy+'px';
+  requestAnimationFrame(tick);
+}();
+
+/* ──────────── INTRO BOUNCE ──────────── */
+!function(){
+  const c=document.getElementById('bounce-canvas');
+  const ctx=c.getContext('2d');
+  let W,H;
+  function rsz(){W=c.width=innerWidth;H=c.height=innerHeight}
+  rsz();addEventListener('resize',rsz);
+
+  const words=[
+    {t:'SDA',sz:.072,gold:true},
+    {t:'Bocconi',sz:.065,gold:true},
+    {t:'GreenHub',sz:.055,gold:false},
+    {t:'Sustainability',sz:.03,gold:false},
+    {t:'Milan',sz:.028,gold:false},
+    {t:'Finance',sz:.027,gold:false},
+    {t:'Energy',sz:.026,gold:false},
+    {t:'Research',sz:.025,gold:false},
+    {t:'ESG',sz:.03,gold:false},
+    {t:'2026',sz:.024,gold:false},
+    {t:'Policy',sz:.023,gold:false},
+  ];
+
+  const balls=words.map(w=>{
+    const speed=w.sz>0.05?2.2:1.6;
+    return{
+      ...w,
+      x:W*.15+Math.random()*W*.7,
+      y:H*.15+Math.random()*H*.7,
+      vx:(Math.random()>.5?1:-1)*(speed+Math.random()*.8),
+      vy:(Math.random()>.5?1:-1)*(speed+Math.random()*.8),
+      rot:0,rv:(Math.random()-.5)*.018
+    }
+  });
+
+  let alive=true;
+  function frame(){
+    if(!alive)return;
+    ctx.clearRect(0,0,W,H);
+    balls.forEach(b=>{
+      const fs=Math.round(b.sz*Math.min(W,H));
+      ctx.font=`800 ${fs}px Inter,-apple-system,sans-serif`;
+      const tw=ctx.measureText(b.t).width;
+      b.x+=b.vx;b.y+=b.vy;b.rot+=b.rv;
+      if(b.x-tw/2<0){b.x=tw/2;b.vx=Math.abs(b.vx)}
+      if(b.x+tw/2>W){b.x=W-tw/2;b.vx=-Math.abs(b.vx)}
+      if(b.y-fs*.6<0){b.y=fs*.6;b.vy=Math.abs(b.vy)}
+      if(b.y+fs*.4>H){b.y=H-fs*.4;b.vy=-Math.abs(b.vy)}
+      ctx.save();
+      ctx.translate(b.x,b.y);ctx.rotate(b.rot);
+      ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillStyle=b.gold?'#F5C518':'rgba(255,255,255,0.18)';
+      ctx.fillText(b.t,0,0);
+      ctx.restore();
+    });
+    requestAnimationFrame(frame);
+  }
+  frame();
+
+  /* show logo after 700ms */
+  setTimeout(()=>{
+    document.getElementById('intro-logo').style.opacity='1';
+    document.getElementById('intro-logo').style.transform='scale(1)';
+    document.getElementById('intro-tagline').style.opacity='1';
+    document.getElementById('intro-progress').style.width='100%';
+  },700);
+
+  function dismiss(){
+    if(!alive)return;
+    alive=false;
+    const el=document.getElementById('intro');
+    el.style.transition='opacity .65s';el.style.opacity='0';
+    setTimeout(()=>{
+      el.style.display='none';
+      document.getElementById('main-nav').classList.add('show');
+      ['hb','hh','hs','hbt','hsp'].forEach(id=>{
+        const e=document.getElementById(id);
+        if(e)e.classList.add('show');
+      });
+    },650);
+  }
+  setTimeout(dismiss,4000);
+  document.getElementById('skip-btn').addEventListener('click',dismiss);
+}();
+
+/* ──────────── HERO CANVAS — particle field ──────────── */
+!function(){
+  const c=document.getElementById('hero-canvas');
+  const ctx=c.getContext('2d');
+  let W,H;
+  function rsz(){W=c.width=c.parentElement.offsetWidth;H=c.height=c.parentElement.offsetHeight}
+  rsz();addEventListener('resize',rsz);
+
+  /* Generate particle grid */
+  const pts=[];
+  for(let i=0;i<120;i++){
+    pts.push({
+      x:Math.random()*3000,y:Math.random()*1200,
+      vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,
+      r:.6+Math.random()*.9,
+      a:.08+Math.random()*.35,
+      gold:Math.random()>.72
+    });
+  }
+
+  let mouseX=W*.6,mouseY=H*.4;
+  document.addEventListener('mousemove',e=>{mouseX=e.clientX;mouseY=e.clientY});
+
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    /* mouse spotlight */
+    const g=ctx.createRadialGradient(mouseX,mouseY,0,mouseX,mouseY,280);
+    g.addColorStop(0,'rgba(245,197,24,0.05)');g.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+
+    pts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;
+      if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.gold?`rgba(245,197,24,${p.a})`:`rgba(255,255,255,${p.a*.35})`;
+      ctx.fill();
+    });
+
+    /* edges between nearby particles */
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<90){
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x,pts[i].y);
+          ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.strokeStyle=`rgba(245,197,24,${.045*(1-d/90)})`;
+          ctx.lineWidth=.35;ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+}();
+
+/* ──────────── COVER CANVAS ──────────── */
+!function(){
+  const c=document.getElementById('cover-canvas');
+  const ctx=c.getContext('2d');
+  let W,H,t=0;
+  function rsz(){W=c.width=c.parentElement.offsetWidth;H=c.height=c.parentElement.offsetHeight||500}
+  rsz();addEventListener('resize',rsz);
+
+  const dataX=[.06,.14,.24,.34,.46,.57,.67,.77,.87,.95];
+  const dataY=[.78,.70,.62,.52,.43,.34,.26,.19,.13,.08];
+
+  function frame(){
+    t+=.006;
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#0c0c0c';ctx.fillRect(0,0,W,H);
+
+    /* faint grid */
+    ctx.strokeStyle='rgba(255,255,255,0.03)';ctx.lineWidth=.5;
+    for(let i=1;i<7;i++){
+      ctx.beginPath();ctx.moveTo(0,H*i/7);ctx.lineTo(W,H*i/7);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(W*i/7,0);ctx.lineTo(W*i/7,H);ctx.stroke();
+    }
+
+    const pts=dataX.map((px,i)=>[px*W, dataY[i]*H + Math.sin(t+i*.7)*7]);
+
+    /* area fill */
+    ctx.beginPath();ctx.moveTo(0,H);
+    pts.forEach(([x,y])=>ctx.lineTo(x,y));
+    ctx.lineTo(W,H);ctx.closePath();
+    const g=ctx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0,'rgba(245,197,24,.16)');g.addColorStop(1,'rgba(245,197,24,0)');
+    ctx.fillStyle=g;ctx.fill();
+
+    /* line */
+    ctx.beginPath();pts.forEach(([x,y],i)=>i===0?ctx.moveTo(x,y):ctx.lineTo(x,y));
+    ctx.strokeStyle='#F5C518';ctx.lineWidth=1.8;ctx.lineJoin='round';ctx.stroke();
+
+    /* dots */
+    pts.forEach(([x,y])=>{
+      ctx.beginPath();ctx.arc(x,y,2.5,0,Math.PI*2);
+      ctx.fillStyle='#F5C518';ctx.fill();
+    });
+
+    /* label */
+    ctx.font='600 10px Inter,sans-serif';
+    ctx.fillStyle='rgba(245,197,24,.45)';
+    ctx.fillText('EU GREEN BOND MARKET  ·  €350BN CAPITAL GAP',16,20);
+
+    requestAnimationFrame(frame);
+  }
+  frame();
+}();
+
+/* ──────────── SCROLL REVEAL ──────────── */
+const rvs=document.querySelectorAll('.rv');
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:.08});
+rvs.forEach(el=>obs.observe(el));
+
+/* ──────────── JOIN FORM ──────────── */
+document.getElementById('j-btn').addEventListener('click',()=>{
+  const el=document.getElementById('j-email'),v=el.value.trim();
+  if(v&&v.includes('@')&&v.includes('.')){
+    el.value='';el.placeholder="You're in — welcome!";
+    const b=document.getElementById('j-btn');b.textContent='Done ✓';b.style.background='#333';b.style.color='#fff';
+  }else{
+    el.value='';el.placeholder='Please enter a valid email';
+    setTimeout(()=>{el.placeholder='Your Bocconi email'},2200);
+  }
+});
+
+/* ──────────── SUBTLE HERO PARALLAX ──────────── */
+document.addEventListener('mousemove',e=>{
+  const dx=(e.clientX/innerWidth-.5)*16,dy=(e.clientY/innerHeight-.5)*10;
+  const hc=document.getElementById('hero-canvas');
+  if(hc)hc.style.transform=`translate(${dx*.25}px,${dy*.25}px)`;
+});
+</script>
+</body>
+</html>

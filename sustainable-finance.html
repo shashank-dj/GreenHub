@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sustainable Finance | GreenHub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --gold:#F5C518;
+  --bg:#0F0F0F;
+  --surface:#141414;
+  --surface2:#1A1A1A;
+  --border:rgba(255,255,255,.08);
+  --text-secondary:rgba(255,255,255,.55);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:var(--bg);
+  color:#fff;
+  font-family:'Inter',sans-serif;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* NAVBAR */
+
+nav{
+  height:70px;
+  display:flex;
+  align-items:center;
+  padding:0 40px;
+  border-bottom:1px solid var(--border);
+  background:#111;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:800;
+}
+
+.logo span{
+  color:var(--gold);
+}
+
+.nav-links{
+  display:flex;
+  gap:28px;
+  margin-left:50px;
+}
+
+.nav-links a{
+  color:rgba(255,255,255,.5);
+  font-size:14px;
+}
+
+.nav-links a.active{
+  color:var(--gold);
+  font-weight:600;
+}
+
+/* HERO */
+
+.hero{
+  max-width:1200px;
+  margin:auto;
+  padding:120px 40px 80px;
+}
+
+.hero-tag{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-size:80px;
+  line-height:.95;
+  margin-bottom:24px;
+  max-width:800px;
+}
+
+.hero p{
+  max-width:700px;
+  font-size:18px;
+  line-height:1.8;
+  color:var(--text-secondary);
+}
+
+/* STATS */
+
+.stats{
+  max-width:1200px;
+  margin:auto;
+  padding:0 40px 80px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.stat{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:35px;
+}
+
+.stat-number{
+  font-size:54px;
+  font-weight:800;
+  color:var(--gold);
+  margin-bottom:8px;
+}
+
+.stat-label{
+  color:var(--text-secondary);
+}
+
+/* FEATURED */
+
+.feature{
+  max-width:1200px;
+  margin:auto;
+  padding:0 40px 80px;
+}
+
+.feature-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:50px;
+}
+
+.feature-tag{
+  color:var(--gold);
+  text-transform:uppercase;
+  font-size:12px;
+  margin-bottom:15px;
+}
+
+.feature-card h2{
+  font-size:42px;
+  line-height:1.2;
+  margin-bottom:20px;
+}
+
+.feature-card p{
+  color:var(--text-secondary);
+  line-height:1.9;
+  max-width:800px;
+}
+
+.read-more{
+  display:inline-block;
+  margin-top:24px;
+  color:var(--gold);
+  font-weight:600;
+}
+
+/* ARTICLES */
+
+.articles{
+  max-width:1200px;
+  margin:auto;
+  padding:0 40px 80px;
+}
+
+.section-title{
+  font-size:42px;
+  margin-bottom:30px;
+}
+
+.article-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.article{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:25px;
+}
+
+.article-number{
+  color:var(--gold);
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+.article h3{
+  margin-bottom:14px;
+  line-height:1.4;
+}
+
+.article p{
+  color:var(--text-secondary);
+  line-height:1.8;
+}
+
+/* INSIGHTS BAND */
+
+.insights{
+  max-width:1200px;
+  margin:auto;
+  padding:0 40px 80px;
+}
+
+.insight-box{
+  background:linear-gradient(
+      135deg,
+      rgba(245,197,24,.08),
+      rgba(245,197,24,.02)
+  );
+  border:1px solid rgba(245,197,24,.15);
+  border-radius:16px;
+  padding:50px;
+}
+
+.insight-box h2{
+  font-size:38px;
+  margin-bottom:15px;
+}
+
+.insight-box p{
+  color:var(--text-secondary);
+  line-height:1.9;
+}
+
+/* FOOTER */
+
+footer{
+  border-top:1px solid var(--border);
+  margin-top:60px;
+  padding:40px;
+  text-align:center;
+  color:var(--text-secondary);
+}
+
+@media(max-width:900px){
+
+.hero h1{
+  font-size:52px;
+}
+
+.stats{
+  grid-template-columns:1fr;
+}
+
+.article-grid{
+  grid-template-columns:1fr;
+}
+
+.nav-links{
+  display:none;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<a href="index.html" class="logo">
+Green<span>Hub</span>
+</a>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="energy-transition.html">Energy</a>
+<a href="sustainable-finance.html" class="active">Finance</a>
+<a href="esg-policy.html">ESG Policy</a>
+<a href="events.html">Events</a>
+<a href="research.html">Research</a>
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-tag">
+Sustainable Finance
+</div>
+
+<h1>
+Capital For The
+Net-Zero Future
+</h1>
+
+<p>
+Exploring sustainable investing, green bonds, ESG integration,
+climate finance, impact investing and the capital markets
+powering the global energy transition.
+</p>
+
+</section>
+
+<section class="stats">
+
+<div class="stat">
+<div class="stat-number">€2.8T</div>
+<div class="stat-label">Global ESG Assets</div>
+</div>
+
+<div class="stat">
+<div class="stat-number">€350B</div>
+<div class="stat-label">Annual Funding Gap</div>
+</div>
+
+<div class="stat">
+<div class="stat-number">2050</div>
+<div class="stat-label">Net-Zero Target</div>
+</div>
+
+</section>
+
+<section class="feature">
+
+<div class="feature-card">
+
+<div class="feature-tag">
+Featured Analysis
+</div>
+
+<h2>
+Europe's Energy Transition Is Moving Faster Than Finance Can Follow
+</h2>
+
+<p>
+As renewable deployment accelerates across Europe,
+capital markets are struggling to keep pace with the
+scale of investment required. GreenHub's Sustainable
+Finance Lab examines the growing disconnect between
+climate ambitions and available financing mechanisms.
+</p>
+
+<a href="#" class="read-more">
+Read Full Analysis →
+</a>
+
+</div>
+
+</section>
+
+<section class="articles">
+
+<h2 class="section-title">
+Latest Finance Articles
+</h2>
+
+<div class="article-grid">
+
+<div class="article">
+<div class="article-number">01</div>
+<h3>Green Bonds After 2025</h3>
+<p>
+How issuers are adapting to stricter sustainability
+disclosure requirements across Europe.
+</p>
+</div>
+
+<div class="article">
+<div class="article-number">02</div>
+<h3>ESG Investing Under Pressure</h3>
+<p>
+Examining investor expectations and fund performance
+in a rapidly changing market environment.
+</p>
+</div>
+
+<div class="article">
+<div class="article-number">03</div>
+<h3>Financing Carbon Removal</h3>
+<p>
+The business models emerging around carbon capture
+and long-term removal technologies.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="insights">
+
+<div class="insight-box">
+
+<h2>
+The Future of Sustainable Capital
+</h2>
+
+<p>
+The next decade will determine whether financial markets
+can effectively support the transition to a low-carbon economy.
+From blended finance structures to transition bonds and
+nature-based investments, innovative financing solutions
+will play a critical role in bridging the climate investment gap.
+</p>
+
+</div>
+
+</section>
+
+<section class="articles">
+
+<h2 class="section-title">
+Research Briefs
+</h2>
+
+<div class="article-grid">
+
+<div class="article">
+<div class="article-number">04</div>
+<h3>Impact Investing In Europe</h3>
+<p>
+Who is actually moving capital toward climate-positive investments?
+</p>
+</div>
+
+<div class="article">
+<div class="article-number">05</div>
+<h3>Climate Risk & Valuation</h3>
+<p>
+How institutional investors are integrating climate risk into valuations.
+</p>
+</div>
+
+<div class="article">
+<div class="article-number">06</div>
+<h3>SFDR Fund Classification</h3>
+<p>
+Understanding the evolution of Article 8 and Article 9 funds.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 GreenHub Bocconi · Sustainable Finance Section
+</footer>
+
+</body>
+</html>

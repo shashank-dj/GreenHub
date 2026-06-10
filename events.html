@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events | GreenHub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --gold:#F5C518;
+    --bg:#0F0F0F;
+    --surface:#141414;
+    --surface2:#1A1A1A;
+    --border:rgba(255,255,255,.08);
+    --text-secondary:rgba(255,255,255,.55);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:var(--bg);
+    color:white;
+    font-family:'Inter',sans-serif;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* NAVIGATION */
+
+nav{
+    height:70px;
+    display:flex;
+    align-items:center;
+    padding:0 40px;
+    border-bottom:1px solid var(--border);
+    background:#111;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:800;
+}
+
+.logo span{
+    color:var(--gold);
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    margin-left:50px;
+}
+
+.nav-links a{
+    color:rgba(255,255,255,.5);
+}
+
+.nav-links a.active{
+    color:var(--gold);
+    font-weight:600;
+}
+
+/* HERO */
+
+.hero{
+    max-width:1200px;
+    margin:auto;
+    padding:120px 40px 80px;
+}
+
+.hero-tag{
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:12px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:84px;
+    line-height:.95;
+    margin-bottom:24px;
+}
+
+.hero p{
+    max-width:720px;
+    color:var(--text-secondary);
+    line-height:1.9;
+    font-size:18px;
+}
+
+/* STATS */
+
+.stats{
+    max-width:1200px;
+    margin:auto;
+    padding:0 40px 80px;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.stat{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:30px;
+}
+
+.stat-number{
+    color:var(--gold);
+    font-size:48px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.stat-label{
+    color:var(--text-secondary);
+}
+
+/* FEATURED */
+
+.feature{
+    max-width:1200px;
+    margin:auto;
+    padding:0 40px 80px;
+}
+
+.feature-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:50px;
+}
+
+.feature-tag{
+    color:var(--gold);
+    text-transform:uppercase;
+    font-size:12px;
+    margin-bottom:15px;
+}
+
+.feature-card h2{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.feature-card p{
+    color:var(--text-secondary);
+    line-height:1.9;
+}
+
+.read-more{
+    display:inline-block;
+    margin-top:20px;
+    color:var(--gold);
+    font-weight:600;
+}
+
+/* SECTION */
+
+.section{
+    max-width:1200px;
+    margin:auto;
+    padding:0 40px 80px;
+}
+
+.section-title{
+    font-size:42px;
+    margin-bottom:30px;
+}
+
+/* EVENT GRID */
+
+.event-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.event-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:28px;
+}
+
+.event-date{
+    color:var(--gold);
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.event-card h3{
+    margin-bottom:12px;
+    line-height:1.4;
+}
+
+.event-card p{
+    color:var(--text-secondary);
+    line-height:1.8;
+}
+
+/* COMMUNITY */
+
+.community{
+    max-width:1200px;
+    margin:auto;
+    padding:0 40px 80px;
+}
+
+.community-box{
+    background:linear-gradient(
+        135deg,
+        rgba(245,197,24,.08),
+        rgba(245,197,24,.02)
+    );
+
+    border:1px solid rgba(245,197,24,.15);
+    border-radius:16px;
+    padding:50px;
+}
+
+.community-box h2{
+    font-size:40px;
+    margin-bottom:20px;
+}
+
+.community-box p{
+    color:var(--text-secondary);
+    line-height:1.9;
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid var(--border);
+    margin-top:60px;
+    padding:40px;
+    text-align:center;
+    color:var(--text-secondary);
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.hero h1{
+    font-size:54px;
+}
+
+.stats{
+    grid-template-columns:1fr;
+}
+
+.event-grid{
+    grid-template-columns:1fr;
+}
+
+.nav-links{
+    display:none;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<a href="index.html" class="logo">
+Green<span>Hub</span>
+</a>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="energy-transition.html">Energy</a>
+<a href="sustainable-finance.html">Finance</a>
+<a href="esg-policy.html">ESG Policy</a>
+<a href="events.html" class="active">Events</a>
+<a href="research.html">Research</a>
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-tag">
+GreenHub Events
+</div>
+
+<h1>
+Where Ideas<br>
+Become Action
+</h1>
+
+<p>
+A platform where students, executives, investors,
+policymakers and sustainability leaders come together
+to discuss the future of energy transition, sustainable
+finance and ESG innovation.
+</p>
+
+</section>
+
+<section class="stats">
+
+<div class="stat">
+<div class="stat-number">12</div>
+<div class="stat-label">Events This Year</div>
+</div>
+
+<div class="stat">
+<div class="stat-number">600+</div>
+<div class="stat-label">Attendees</div>
+</div>
+
+<div class="stat">
+<div class="stat-number">20+</div>
+<div class="stat-label">Guest Speakers</div>
+</div>
+
+<div class="stat">
+<div class="stat-number">8</div>
+<div class="stat-label">Industry Partners</div>
+</div>
+
+</section>
+
+<section class="feature">
+
+<div class="feature-card">
+
+<div class="feature-tag">
+Upcoming Highlight
+</div>
+
+<h2>
+ESG Integration In Practice
+</h2>
+
+<p>
+Join sustainability leaders from Eurizon Capital and
+industry experts to explore how ESG considerations
+are reshaping investment decisions and corporate strategy.
+</p>
+
+<a href="#" class="read-more">
+Reserve Your Seat →
+</a>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+Upcoming Events
+</h2>
+
+<div class="event-grid">
+
+<div class="event-card">
+<div class="event-date">28 MAY</div>
+<h3>ESG Integration In Practice</h3>
+<p>Eurizon Capital • SDA Bocconi • 18:00</p>
+</div>
+
+<div class="event-card">
+<div class="event-date">05 JUN</div>
+<h3>Green Bond Workshop</h3>
+<p>Interactive session on sustainable debt markets.</p>
+</div>
+
+<div class="event-card">
+<div class="event-date">12 JUN</div>
+<h3>Energy Transition Roundtable</h3>
+<p>Industry leaders discuss Europe's renewable future.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="community">
+
+<div class="community-box">
+
+<h2>
+Building Milan's Sustainability Community
+</h2>
+
+<p>
+GreenHub connects students with practitioners,
+investors, founders and policymakers. Our events
+bridge academic knowledge with real-world
+sustainability challenges and opportunities.
+</p>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+Speaker Archive
+</h2>
+
+<div class="event-grid">
+
+<div class="event-card">
+<div class="event-date">ENERGY</div>
+<h3>Enel Green Power Executive Session</h3>
+<p>Renewable deployment, grid modernization and storage.</p>
+</div>
+
+<div class="event-card">
+<div class="event-date">FINANCE</div>
+<h3>Sustainable Finance Lab Showcase</h3>
+<p>Climate investing and green capital allocation.</p>
+</div>
+
+<div class="event-card">
+<div class="event-date">POLICY</div>
+<h3>EU Climate Policy Forum</h3>
+<p>Discussion on CBAM, CSRD and ESG regulations.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+Event Categories
+</h2>
+
+<div class="event-grid">
+
+<div class="event-card">
+<div class="event-date">01</div>
+<h3>Speaker Series</h3>
+<p>Industry leaders sharing practical sustainability insights.</p>
+</div>
+
+<div class="event-card">
+<div class="event-date">02</div>
+<h3>Workshops</h3>
+<p>Hands-on sessions focused on sustainability skills.</p>
+</div>
+
+<div class="event-card">
+<div class="event-date">03</div>
+<h3>Networking Events</h3>
+<p>Connecting students with professionals and alumni.</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 GreenHub Bocconi · Events & Community
+</footer>
+
+</body>
+</html>
