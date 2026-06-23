@@ -10,7 +10,7 @@
 <style>
 
 :root{
-  --gold:#F5C518;
+  --gold:#3DDC84;
   --bg:#0F0F0F;
   --surface:#141414;
   --surface2:#1A1A1A;
@@ -49,11 +49,15 @@ nav{
 .logo{
   font-size:24px;
   font-weight:800;
+  display:inline-flex;align-items:center;gap:.42em;
 }
 
 .logo span{
   color:var(--gold);
 }
+.gh-mark{height:1.15em;width:auto;flex:none;display:inline-block;vertical-align:middle}
+.club-badge{display:inline-flex;align-items:center;background:#fff;border-radius:10px;padding:13px 17px}
+.club-badge img{height:52px;width:auto;display:block}
 
 .nav-links{
   display:flex;
@@ -224,10 +228,10 @@ nav{
 .insight-box{
   background:linear-gradient(
       135deg,
-      rgba(245,197,24,.08),
-      rgba(245,197,24,.02)
+      rgba(61,220,132,.08),
+      rgba(61,220,132,.02)
   );
-  border:1px solid rgba(245,197,24,.15);
+  border:1px solid rgba(61,220,132,.15);
   border-radius:16px;
   padding:50px;
 }
@@ -279,7 +283,7 @@ footer{
 <nav>
 
 <a href="index.html" class="logo">
-Green<span>Hub</span>
+<img class="gh-mark" src="susClub-icon.png" alt="Sustainable Industry and Energy Club, SDA Bocconi">Green<span>Hub</span>
 </a>
 
 <div class="nav-links">
@@ -455,6 +459,8 @@ Understanding the evolution of Article 8 and Article 9 funds.
 </section>
 
 <footer>
+  <div class="club-badge" style="margin-bottom:16px"><img src="susClub-logo.png" alt="Sustainable Industry and Energy Club, SDA Bocconi"></div>
+  
 © 2026 GreenHub Bocconi · Sustainable Finance Section
 </footer>
 
