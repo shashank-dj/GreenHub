@@ -9,7 +9,7 @@
 
 <style>
 :root{
-  --gold:#F5C518;
+  --gold:#3DDC84;
   --bg:#0F0F0F;
   --surface:#141414;
   --surface2:#1A1A1A;
@@ -48,11 +48,13 @@ nav{
 .logo{
   font-size:24px;
   font-weight:800;
+  display:inline-flex;align-items:center;gap:.42em;
 }
 
 .logo span{
   color:var(--gold);
 }
+.gh-mark{width:1em;height:1em;color:var(--gold);flex:none;display:inline-block;vertical-align:middle}
 
 .nav-links{
   display:flex;
@@ -238,7 +240,7 @@ footer{
 
 <nav>
   <a href="index.html" class="logo">
-    Green<span>Hub</span>
+    <svg class="gh-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1.4" opacity=".35"/><path d="M20 31V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20.5 20.5c0-4.6 3.4-8.2 8-8.5-.4 4.8-3.8 8.2-8 8.5Z" fill="currentColor"/><path d="M19.5 24c0-4-3-7.2-7-7.4.4 4.4 3.4 7.1 7 7.4Z" fill="currentColor" opacity=".55"/><circle cx="20" cy="12.5" r="2.6" fill="currentColor"/></svg>Green<span>Hub</span>
   </a>
 
   <div class="nav-links">
