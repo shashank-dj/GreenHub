@@ -3,276 +3,276 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Research | GreenHub</title>
+<title>Sustainable Finance | GreenHub</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
-    --gold:#F5C518;
-    --bg:#0F0F0F;
-    --surface:#141414;
-    --surface2:#1A1A1A;
-    --border:rgba(255,255,255,.08);
-    --text-secondary:rgba(255,255,255,.55);
+  --gold:#3DDC84;
+  --bg:#0F0F0F;
+  --surface:#141414;
+  --surface2:#1A1A1A;
+  --border:rgba(255,255,255,.08);
+  --text-secondary:rgba(255,255,255,.55);
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-    background:var(--bg);
-    color:white;
-    font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:#fff;
+  font-family:'Inter',sans-serif;
 }
 
 a{
-    text-decoration:none;
-    color:inherit;
+  text-decoration:none;
+  color:inherit;
 }
 
-/* NAVIGATION */
+/* NAVBAR */
 
 nav{
-    height:70px;
-    display:flex;
-    align-items:center;
-    padding:0 40px;
-    border-bottom:1px solid var(--border);
-    background:#111;
+  height:70px;
+  display:flex;
+  align-items:center;
+  padding:0 40px;
+  border-bottom:1px solid var(--border);
+  background:#111;
 }
 
 .logo{
-    font-size:24px;
-    font-weight:800;
+  font-size:24px;
+  font-weight:800;
+  display:inline-flex;align-items:center;gap:.42em;
 }
 
 .logo span{
-    color:var(--gold);
+  color:var(--gold);
 }
+.gh-mark{width:1em;height:1em;color:var(--gold);flex:none;display:inline-block;vertical-align:middle}
 
 .nav-links{
-    display:flex;
-    gap:28px;
-    margin-left:50px;
+  display:flex;
+  gap:28px;
+  margin-left:50px;
 }
 
 .nav-links a{
-    color:rgba(255,255,255,.5);
+  color:rgba(255,255,255,.5);
+  font-size:14px;
 }
 
 .nav-links a.active{
-    color:var(--gold);
-    font-weight:600;
+  color:var(--gold);
+  font-weight:600;
 }
 
 /* HERO */
 
 .hero{
-    max-width:1200px;
-    margin:auto;
-    padding:120px 40px 80px;
+  max-width:1200px;
+  margin:auto;
+  padding:120px 40px 80px;
 }
 
 .hero-tag{
-    color:var(--gold);
-    text-transform:uppercase;
-    letter-spacing:2px;
-    font-size:12px;
-    margin-bottom:20px;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
+  margin-bottom:20px;
 }
 
 .hero h1{
-    font-size:84px;
-    line-height:.95;
-    margin-bottom:24px;
+  font-size:80px;
+  line-height:.95;
+  margin-bottom:24px;
+  max-width:800px;
 }
 
 .hero p{
-    max-width:760px;
-    color:var(--text-secondary);
-    line-height:1.9;
-    font-size:18px;
+  max-width:700px;
+  font-size:18px;
+  line-height:1.8;
+  color:var(--text-secondary);
 }
 
 /* STATS */
 
 .stats{
-    max-width:1200px;
-    margin:auto;
-    padding:0 40px 80px;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
+  max-width:1200px;
+  margin:auto;
+  padding:0 40px 80px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
 .stat{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:30px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:35px;
 }
 
 .stat-number{
-    color:var(--gold);
-    font-size:48px;
-    font-weight:800;
-    margin-bottom:10px;
+  font-size:54px;
+  font-weight:800;
+  color:var(--gold);
+  margin-bottom:8px;
 }
 
 .stat-label{
-    color:var(--text-secondary);
+  color:var(--text-secondary);
 }
 
-/* FEATURE */
+/* FEATURED */
 
 .feature{
-    max-width:1200px;
-    margin:auto;
-    padding:0 40px 80px;
+  max-width:1200px;
+  margin:auto;
+  padding:0 40px 80px;
 }
 
 .feature-card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:50px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:50px;
 }
 
 .feature-tag{
-    color:var(--gold);
-    text-transform:uppercase;
-    font-size:12px;
-    margin-bottom:15px;
+  color:var(--gold);
+  text-transform:uppercase;
+  font-size:12px;
+  margin-bottom:15px;
 }
 
 .feature-card h2{
-    font-size:42px;
-    margin-bottom:20px;
+  font-size:42px;
+  line-height:1.2;
+  margin-bottom:20px;
 }
 
 .feature-card p{
-    color:var(--text-secondary);
-    line-height:1.9;
+  color:var(--text-secondary);
+  line-height:1.9;
+  max-width:800px;
 }
 
 .read-more{
-    display:inline-block;
-    margin-top:20px;
-    color:var(--gold);
-    font-weight:600;
+  display:inline-block;
+  margin-top:24px;
+  color:var(--gold);
+  font-weight:600;
 }
 
-/* SECTION */
+/* ARTICLES */
 
-.section{
-    max-width:1200px;
-    margin:auto;
-    padding:0 40px 80px;
+.articles{
+  max-width:1200px;
+  margin:auto;
+  padding:0 40px 80px;
 }
 
 .section-title{
-    font-size:42px;
-    margin-bottom:30px;
+  font-size:42px;
+  margin-bottom:30px;
 }
 
-/* RESEARCH GRID */
-
-.research-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+.article-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
-.paper-card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:28px;
+.article{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:25px;
 }
 
-.paper-number{
-    color:var(--gold);
-    font-weight:700;
-    margin-bottom:12px;
+.article-number{
+  color:var(--gold);
+  font-weight:700;
+  margin-bottom:12px;
 }
 
-.paper-card h3{
-    margin-bottom:12px;
-    line-height:1.4;
+.article h3{
+  margin-bottom:14px;
+  line-height:1.4;
 }
 
-.paper-card p{
-    color:var(--text-secondary);
-    line-height:1.8;
+.article p{
+  color:var(--text-secondary);
+  line-height:1.8;
 }
 
-/* HIGHLIGHT */
+/* INSIGHTS BAND */
 
-.highlight{
-    max-width:1200px;
-    margin:auto;
-    padding:0 40px 80px;
+.insights{
+  max-width:1200px;
+  margin:auto;
+  padding:0 40px 80px;
 }
 
-.highlight-box{
-    background:linear-gradient(
-        135deg,
-        rgba(245,197,24,.08),
-        rgba(245,197,24,.02)
-    );
-
-    border:1px solid rgba(245,197,24,.15);
-    border-radius:16px;
-    padding:50px;
+.insight-box{
+  background:linear-gradient(
+      135deg,
+      rgba(61,220,132,.08),
+      rgba(61,220,132,.02)
+  );
+  border:1px solid rgba(61,220,132,.15);
+  border-radius:16px;
+  padding:50px;
 }
 
-.highlight-box h2{
-    font-size:40px;
-    margin-bottom:20px;
+.insight-box h2{
+  font-size:38px;
+  margin-bottom:15px;
 }
 
-.highlight-box p{
-    color:var(--text-secondary);
-    line-height:1.9;
+.insight-box p{
+  color:var(--text-secondary);
+  line-height:1.9;
 }
 
 /* FOOTER */
 
 footer{
-    border-top:1px solid var(--border);
-    margin-top:60px;
-    padding:40px;
-    text-align:center;
-    color:var(--text-secondary);
+  border-top:1px solid var(--border);
+  margin-top:60px;
+  padding:40px;
+  text-align:center;
+  color:var(--text-secondary);
 }
-
-/* MOBILE */
 
 @media(max-width:900px){
 
 .hero h1{
-    font-size:54px;
+  font-size:52px;
 }
 
 .stats{
-    grid-template-columns:1fr;
+  grid-template-columns:1fr;
 }
 
-.research-grid{
-    grid-template-columns:1fr;
+.article-grid{
+  grid-template-columns:1fr;
 }
 
 .nav-links{
-    display:none;
+  display:none;
 }
 
 }
-
 </style>
 </head>
 
@@ -281,16 +281,16 @@ footer{
 <nav>
 
 <a href="index.html" class="logo">
-Green<span>Hub</span>
+<svg class="gh-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1.4" opacity=".35"/><path d="M20 31V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20.5 20.5c0-4.6 3.4-8.2 8-8.5-.4 4.8-3.8 8.2-8 8.5Z" fill="currentColor"/><path d="M19.5 24c0-4-3-7.2-7-7.4.4 4.4 3.4 7.1 7 7.4Z" fill="currentColor" opacity=".55"/><circle cx="20" cy="12.5" r="2.6" fill="currentColor"/></svg>Green<span>Hub</span>
 </a>
 
 <div class="nav-links">
 <a href="index.html">Home</a>
 <a href="energy-transition.html">Energy</a>
-<a href="sustainable-finance.html">Finance</a>
+<a href="sustainable-finance.html" class="active">Finance</a>
 <a href="esg-policy.html">ESG Policy</a>
 <a href="events.html">Events</a>
-<a href="research.html" class="active">Research</a>
+<a href="research.html">Research</a>
 </div>
 
 </nav>
@@ -298,18 +298,18 @@ Green<span>Hub</span>
 <section class="hero">
 
 <div class="hero-tag">
-GreenHub Research
+Sustainable Finance
 </div>
 
 <h1>
-Ideas Backed<br>
-By Evidence
+Capital For The
+Net-Zero Future
 </h1>
 
 <p>
-Student-led research exploring sustainable finance,
-energy transition, ESG regulation, climate policy,
-and emerging technologies shaping a sustainable future.
+Exploring sustainable investing, green bonds, ESG integration,
+climate finance, impact investing and the capital markets
+powering the global energy transition.
 </p>
 
 </section>
@@ -317,23 +317,18 @@ and emerging technologies shaping a sustainable future.
 <section class="stats">
 
 <div class="stat">
-<div class="stat-number">4</div>
-<div class="stat-label">Published Papers</div>
+<div class="stat-number">€2.8T</div>
+<div class="stat-label">Global ESG Assets</div>
 </div>
 
 <div class="stat">
-<div class="stat-number">12</div>
-<div class="stat-label">Research Contributors</div>
+<div class="stat-number">€350B</div>
+<div class="stat-label">Annual Funding Gap</div>
 </div>
 
 <div class="stat">
-<div class="stat-number">3</div>
-<div class="stat-label">Research Labs</div>
-</div>
-
-<div class="stat">
-<div class="stat-number">25+</div>
-<div class="stat-label">Industry Citations</div>
+<div class="stat-number">2050</div>
+<div class="stat-label">Net-Zero Target</div>
 </div>
 
 </section>
@@ -343,131 +338,118 @@ and emerging technologies shaping a sustainable future.
 <div class="feature-card">
 
 <div class="feature-tag">
-Featured Research
+Featured Analysis
 </div>
 
 <h2>
-Stranded Assets In The Italian Electricity Grid
+Europe's Energy Transition Is Moving Faster Than Finance Can Follow
 </h2>
 
 <p>
-An analysis of infrastructure investment risks,
-future energy demand scenarios, and the economic
-implications of accelerating decarbonization policies
-across Italy and Europe.
+As renewable deployment accelerates across Europe,
+capital markets are struggling to keep pace with the
+scale of investment required. GreenHub's Sustainable
+Finance Lab examines the growing disconnect between
+climate ambitions and available financing mechanisms.
 </p>
 
 <a href="#" class="read-more">
-Read Full Paper →
+Read Full Analysis →
 </a>
 
 </div>
 
 </section>
 
-<section class="section">
+<section class="articles">
 
 <h2 class="section-title">
-Latest Publications
+Latest Finance Articles
 </h2>
 
-<div class="research-grid">
+<div class="article-grid">
 
-<div class="paper-card">
-<div class="paper-number">01</div>
-<h3>Stranded Assets In The Italian Electricity Grid</h3>
-<p>Scenario analysis of future infrastructure utilization.</p>
+<div class="article">
+<div class="article-number">01</div>
+<h3>Green Bonds After 2025</h3>
+<p>
+How issuers are adapting to stricter sustainability
+disclosure requirements across Europe.
+</p>
 </div>
 
-<div class="paper-card">
-<div class="paper-number">02</div>
-<h3>CBAM At The Border</h3>
-<p>Examining implementation challenges and policy implications.</p>
+<div class="article">
+<div class="article-number">02</div>
+<h3>ESG Investing Under Pressure</h3>
+<p>
+Examining investor expectations and fund performance
+in a rapidly changing market environment.
+</p>
 </div>
 
-<div class="paper-card">
-<div class="paper-number">03</div>
-<h3>Impact Investing In Europe</h3>
-<p>Understanding who is driving sustainable capital allocation.</p>
+<div class="article">
+<div class="article-number">03</div>
+<h3>Financing Carbon Removal</h3>
+<p>
+The business models emerging around carbon capture
+and long-term removal technologies.
+</p>
 </div>
 
 </div>
 
 </section>
 
-<section class="highlight">
+<section class="insights">
 
-<div class="highlight-box">
+<div class="insight-box">
 
 <h2>
-Research With Real-World Impact
+The Future of Sustainable Capital
 </h2>
 
 <p>
-GreenHub research aims to bridge academic knowledge
-and industry practice. Our publications are designed
-to support informed decision-making across energy,
-finance, and sustainability sectors.
+The next decade will determine whether financial markets
+can effectively support the transition to a low-carbon economy.
+From blended finance structures to transition bonds and
+nature-based investments, innovative financing solutions
+will play a critical role in bridging the climate investment gap.
 </p>
 
 </div>
 
 </section>
 
-<section class="section">
+<section class="articles">
 
 <h2 class="section-title">
-Research Areas
+Research Briefs
 </h2>
 
-<div class="research-grid">
+<div class="article-grid">
 
-<div class="paper-card">
-<div class="paper-number">ENERGY</div>
-<h3>Energy Transition</h3>
-<p>Renewables, hydrogen, storage, and decarbonization.</p>
+<div class="article">
+<div class="article-number">04</div>
+<h3>Impact Investing In Europe</h3>
+<p>
+Who is actually moving capital toward climate-positive investments?
+</p>
 </div>
 
-<div class="paper-card">
-<div class="paper-number">FINANCE</div>
-<h3>Sustainable Finance</h3>
-<p>ESG investing, green bonds, and climate capital.</p>
+<div class="article">
+<div class="article-number">05</div>
+<h3>Climate Risk & Valuation</h3>
+<p>
+How institutional investors are integrating climate risk into valuations.
+</p>
 </div>
 
-<div class="paper-card">
-<div class="paper-number">POLICY</div>
-<h3>ESG Regulation</h3>
-<p>CSRD, SFDR, CBAM, and sustainability governance.</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2 class="section-title">
-Research Labs
-</h2>
-
-<div class="research-grid">
-
-<div class="paper-card">
-<div class="paper-number">01</div>
-<h3>Policy Lab</h3>
-<p>Researching sustainability regulations and governance.</p>
-</div>
-
-<div class="paper-card">
-<div class="paper-number">02</div>
-<h3>Finance Lab</h3>
-<p>Exploring sustainable investing and capital markets.</p>
-</div>
-
-<div class="paper-card">
-<div class="paper-number">03</div>
-<h3>Energy Lab</h3>
-<p>Analyzing technologies driving the energy transition.</p>
+<div class="article">
+<div class="article-number">06</div>
+<h3>SFDR Fund Classification</h3>
+<p>
+Understanding the evolution of Article 8 and Article 9 funds.
+</p>
 </div>
 
 </div>
@@ -475,7 +457,7 @@ Research Labs
 </section>
 
 <footer>
-© 2026 GreenHub Bocconi · Research & Publications
+© 2026 GreenHub Bocconi · Sustainable Finance Section
 </footer>
 
 </body>
